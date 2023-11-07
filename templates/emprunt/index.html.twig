@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Emprunt index{% endblock %}
 
 {% block body %}
+{% include "admin/header.html.twig" %}
+  
     <h1>Emprunt index</h1>
 
     <table class="table">
@@ -13,6 +14,8 @@
                 <th>DateRetour</th>
                 <th>Statut</th>
                 <th>Commentaire</th>
+                <th>Emprunteur</th>
+                <th>Livre</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,6 +27,8 @@
                 <td>{{ emprunt.dateRetour ? emprunt.dateRetour|date('Y-m-d') : '' }}</td>
                 <td>{{ emprunt.statut ? 'Yes' : 'No' }}</td>
                 <td>{{ emprunt.commentaire }}</td>
+                   <td>{{ emprunt.emprunteur }}</td>
+                      <td>{{ emprunt.livre }}</td>
                 <td>
                     <a href="{{ path('app_emprunt_show', {'id': emprunt.id}) }}">show</a>
                     <a href="{{ path('app_emprunt_edit', {'id': emprunt.id}) }}">edit</a>
@@ -38,4 +43,5 @@
     </table>
 
     <a href="{{ path('app_emprunt_new') }}">Create new</a>
+    {% include "accueil/footer.html.twig" %}
 {% endblock %}

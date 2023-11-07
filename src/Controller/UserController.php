@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/user")
@@ -86,5 +87,32 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+    
+    public function register(Request $request)
+    {
+        // Récupérer les données du formulaire
+        $user = new User();
+        $user->setUsername($request->request->get('username'));
+        $user->setPassword(
+            $this->passwordEncoder->encodePassword(
+                $user,
+                $request->request->get('password')
+            )
+        );
+    
+        // Enregistrer l'utilisateur en base de données
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+    
+        // Rediriger l'utilisateur vers la page de connexion
+        return $this->redirectToRoute('login');
     }
 }

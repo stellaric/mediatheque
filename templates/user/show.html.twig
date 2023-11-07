@@ -3,6 +3,7 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
+{% include "admin/header.html.twig" %}
     <h1>User</h1>
 
     <table class="table">
@@ -21,7 +22,7 @@
             </tr>
             <tr>
                 <th>DateNaissance</th>
-                <td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ user.dateNaissance ? user.dateNaissance|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>AdressePostale</th>
@@ -31,17 +32,14 @@
                 <th>Email</th>
                 <td>{{ user.email }}</td>
             </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
+            
             <tr>
                 <th>Role</th>
-                <td>{{ user.role ? 'Yes' : 'No' }}</td>
+                <td>{{ user.role ? 'Admin' : 'Inscrit' }}</td>
             </tr>
             <tr>
                 <th>Active</th>
-                <td>{{ user.active ? 'Yes' : 'No' }}</td>
+                <td>{{ user.active ? 'Active' : 'Désactiver' }}</td>
             </tr>
         </tbody>
     </table>
@@ -51,4 +49,6 @@
     <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
 
     {{ include('user/_delete_form.html.twig') }}
+        
+  {% include "accueil/footer.html.twig" %}
 {% endblock %}

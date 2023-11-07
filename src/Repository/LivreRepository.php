@@ -39,6 +39,14 @@ class LivreRepository extends ServiceEntityRepository
         }
     }
 
+    public function searchByTitleAndAuthor($searchTerm)
+{
+    return $this->createQueryBuilder('l')
+        ->andWhere('l.titre LIKE :searchTerm OR l.auteur LIKE :searchTerm')
+        ->setParameter('searchTerm', '%'.$searchTerm.'%')
+        ->getQuery()
+        ->getResult();
+}
 //    /**
 //     * @return Livre[] Returns an array of Livre objects
 //     */

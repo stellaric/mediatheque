@@ -1,0 +1,33 @@
+main.accueil{
+    height: 650px;
+}
+
+main.main_register {
+    height: 850px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('https://images.pexels.com/photos/1132577/pexels-photo-1132577.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    object-fit: cover;
+}
+
+main.main_livre {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+
+}
+.main_admin {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 850px;
+}
+

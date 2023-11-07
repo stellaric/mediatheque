@@ -16,6 +16,8 @@ class EmpruntType extends AbstractType
             ->add('dateRetour')
             ->add('statut')
             ->add('commentaire')
+            ->add('emprunteur')
+            ->add('livre')
         ;
     }
 

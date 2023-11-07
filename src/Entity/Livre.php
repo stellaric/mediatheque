@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\LivreRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=LivreRepository::class)
@@ -46,6 +48,12 @@ class Livre
      * @ORM\Column(type="string", length=255)
      */
     private $genre;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Emprunt::class, mappedBy="livre")
+     */
+    private $emprunts;
+
 
     public function getId(): ?int
     {
@@ -123,4 +131,22 @@ class Livre
 
         return $this;
     }
+
+    public function __toString(){
+        return $this->titre ;
+    }
+
+    public function __construct()
+    {
+        $this->emprunts = new ArrayCollection();
+    }
+
+   /**
+ * @return ArrayCollection|Emprunt[]
+ */
+public function getEmprunts(): Collection
+{
+    return $this->emprunts;
+}
+
 }

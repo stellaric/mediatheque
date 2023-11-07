@@ -18,12 +18,20 @@ class LivreController extends AbstractController
     /**
      * @Route("/", name="app_livre_index", methods={"GET"})
      */
-    public function index(LivreRepository $livreRepository): Response
-    {
-        return $this->render('livre/index.html.twig', [
-            'livres' => $livreRepository->findAll(),
-        ]);
+    public function index(LivreRepository $livreRepository, Request $request): Response
+{
+    $searchTerm = $request->query->get('search');
+    
+    if ($searchTerm) {
+        $livres = $livreRepository->searchByTitleAndAuthor($searchTerm);
+    } else {
+        $livres = $livreRepository->findAll();
     }
+
+    return $this->render('livre/index.html.twig', [
+        'livres' => $livres,
+    ]);
+}
 
     /**
      * @Route("/new", name="app_livre_new", methods={"GET", "POST"})

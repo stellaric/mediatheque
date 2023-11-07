@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<header>
+<nav class="navbar shadow-1 orange light-1 text-white ">
+  <a href="index" class="navbar-brand navbar-centered">Médi'Avenir</a>
+  <div class="navbar-menu ml-auto">
+    <a class="navbar-link " href="/">Accueil</a>
+    <a class="navbar-link" href="/login">Connexion</a>
+    <a class="navbar-link" href="/register">Inscription</a>
+  </div>
+</nav>
+<div class="caroulix" id="second-caroulix" data-ax="caroulix" >
+  <div class="caroulix-item">
+    <img src="https://picsum.photos/800/450?random=1" alt="img1" />
+  </div>
+  <div class="caroulix-item">
+    <img src="https://picsum.photos/800/450?random=2" alt="img2" />
+  </div>
+  <div class="caroulix-item">
+    <img src="https://picsum.photos/800/450?random=3" alt="img3" />
+  </div>
+  <div class="caroulix-item">
+    <img src="https://picsum.photos/800/450?random=4" alt="img4" />
+  </div>
+</div>
+</header>
+{% endblock %}

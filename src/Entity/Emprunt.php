@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EmpruntRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+Use App\Entity\User;
 /**
  * @ORM\Entity(repositoryClass=EmpruntRepository::class)
  */
@@ -37,6 +37,19 @@ class Emprunt
      */
     private $commentaire;
 
+   
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="emprunts")
+     */
+    private $emprunteur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Livre::class, inversedBy="emprunts")
+     */
+    private $livre;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,7 +66,6 @@ class Emprunt
 
         return $this;
     }
-
     public function getDateRetour(): ?\DateTimeInterface
     {
         return $this->dateRetour;
@@ -89,4 +101,29 @@ class Emprunt
 
         return $this;
     }
+
+
+      public function getEmprunteur(): ?User
+      {
+          return $this->emprunteur;
+      }
+  
+      public function setEmprunteur(?User $emprunteur): self
+      {
+          $this->emprunteur = $emprunteur;
+          return $this;
+      }
+  
+      // Getter et Setter pour $livre
+      public function getLivre(): ?Livre
+      {
+          return $this->livre;
+      }
+  
+      public function setLivre(?Livre $livre): self
+      {
+          $this->livre = $livre;
+          return $this;
+      }
+    
 }

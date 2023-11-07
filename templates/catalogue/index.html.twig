@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include "admin/header.html.twig" %}
+
+    <div class="card shadow-1 hoverable-1 rounded-3 white text-center">
+        <div class="card-content">
+            <h1>Catalogue</h1>
+
+            <div class="card-footer "> <a href="{{ path('app_livre_new') }}">Create new</a></div>
+        </div>
+    </div>
+
+    <div class="grid xs4">
+        <form action="{{ path('catalogue') }}" method="get">
+            <input type="text" name="search" placeholder="Search by title or author">
+            <button type="submit">Search</button>
+        </form>
+
+        {% if livres|length > 0 %}
+            {% for livre in livres %}
+                {# Votre boucle d'affichage des livres reste la même #}
+                <div class="card white rounded-2 shadow-1 mx-auto" style="max-width: 400px;">
+                    <div class="card-image">
+                        <img src="{{ livre.imgLivre }}" class="responsive-media" alt="{{ livre.titre }}">
+                    </div>
+                    <div class="card-content">
+                        <span class="h3">{{ livre.titre }}</span>
+                        <div class="font-s3 text-black text-light-2">By {{ livre.auteur }}</div>
+                        <div class="mt-3">
+                            <p>{{ livre.description }}</p>
+                            <p>{{ livre.dateParution ? livre.dateParution|date('Y-m-d') : '' }}</p>
+                            <p>{{ livre.genre }}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex mt-1">
+                        <button data-waves="" class="btn mole light-1 text-white rounded-1">
+                            <a href="{{ path('app_livre_show', {'id': livre.id}) }}">Show</a>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="card-content">
+                <p>No records found</p>
+            </div>
+        {% endif %}
+    </div>
+
+    {% include "accueil/footer.html.twig" %}
+{% endblock %}

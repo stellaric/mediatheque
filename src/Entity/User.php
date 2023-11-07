@@ -6,6 +6,8 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -56,10 +58,12 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $active;
+    private $active = false;
 
-
-
+   /**
+     * @ORM\OneToMany(targetEntity=Emprunt::class, mappedBy="emprunteur")
+     */
+    private $emprunts;
 
     public function getId(): ?int
     {
@@ -114,6 +118,17 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
 
     public function getUsername(): ?string
     {
@@ -126,6 +141,7 @@ class User implements UserInterface
 
         return $this;
     }
+
     public function getPassword(): string
     {
         return $this->password;
@@ -181,5 +197,22 @@ class User implements UserInterface
         $this->active = $active;
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this->nom .''.$this->prenom;
+    }
+
+    public function __construct()
+    {
+        $this->emprunts = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Emprunt[]
+     */
+    public function getEmprunts(): Collection
+    {
+        return $this->emprunts;
     }
 }
