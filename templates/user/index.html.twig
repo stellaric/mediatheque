@@ -4,8 +4,8 @@
 
 {% block body %}
 {% include "admin/header.html.twig" %}
-    <h1>Liste Inscrit</h1>
-
+    <h1 class="text-center">Liste Inscrit</h1>
+<main class="main_admin ">
     <table class="table">
         <thead>
             <tr>
@@ -46,7 +46,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
-
-    {% include "accueil/footer.html.twig" %}
+</main>
+    {% include "admin/footer.html.twig" %}
 {% endblock %}

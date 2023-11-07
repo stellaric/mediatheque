@@ -25,7 +25,7 @@
 
           <div class="card white rounded-2 shadow-1 mx-auto" style="max-width: 400px;">
   <div class="card-image">
-    <img src="{{ livre.imgLivre }}" class="responsive-media" alt="{{ livre.titre }}">
+    <img src="{{ livre.imgLivre }}" class="responsive-media" alt="{{ livre.titre }} " style="height:300px;width:400px;>
   </div>
           <div class="card-content">
            <span class="h3">{{ livre.titre }}</span>
@@ -35,7 +35,7 @@
             <p>{{ livre.genre }}</p>
           </div>
 </div>
-  <div class="card-footer d-flex mt-1">
+  <div class="card-footer d-flex mt-1 text-center">
     <button data-waves="" class="btn mole light-1 text-white rounded-1">  <a href="{{ path('app_livre_show', {'id': livre.id}) }}">show</a></button>
  </div>
 </div>
@@ -56,5 +56,5 @@
      </div>
 
   {% include "livre/fab.html.twig" %}
-{% include "accueil/footer.html.twig" %}
+{% include "admin/footer.html.twig" %}
 {% endblock %}

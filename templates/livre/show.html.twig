@@ -3,11 +3,12 @@
 
 {% block body %}
 {% include "admin/header.html.twig" %}
-   <main class="main_livre">
-
-   <div class="card white rounded-2 shadow-1 mx-auto" style="max-width: 400px;">
+   <main class="main_admin">
+   
+   <span class="h1">{{ livre.titre }}</span>
+   <div class="card white rounded-2 shadow-1 " style="max-width: 800px;">
   <div class="card-image">
-    <img src="{{ livre.imgLivre }}" class="responsive-media" alt="{{ livre.titre }}" style="height:300px;">
+    <img src="{{ livre.imgLivre }}" class="responsive-media" alt="{{ livre.titre }}" style="height:300px;width:400px;">
   </div>
           <div class="card-content">
            <span class="h3">{{ livre.titre }}</span>
@@ -29,5 +30,5 @@
   </div>
 
    </main>
-     {% include "accueil/footer.html.twig" %}
+     {% include "admin/footer.html.twig" %}
 {% endblock %}
